@@ -5,9 +5,9 @@
 /login -> Login
 /search -> Search
 
-/edit-profile -> Edit Profile
-/delete-profile -> Delete Profile
+/users/edit -> Edit user
+/users/delete -> Delete user
 
-/watch-video -> Watch Video
-/edit-video -> Edit Video
-/delete-video -> Delete Video
+/videos/watch -> Watch Video
+/videos/edit -> Edit Video
+/videos/delete -> Delete Video
