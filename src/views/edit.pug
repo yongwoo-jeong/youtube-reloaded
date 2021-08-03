@@ -2,7 +2,7 @@ extends base.pug
 
 
 block content
-    h1 Change Title of video
+    h1 Update Video
     form(method="POST")
         input(name="title", placeholder="Video Title", value=video.title, required)
         input(placeholder="Description", required, value=video.description ,type="text", name="description", minlength="20")
