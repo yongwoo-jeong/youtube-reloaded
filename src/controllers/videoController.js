@@ -7,7 +7,6 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   const video = await Video.findById(id);
   if (!video) {
     return res.render("404", { pageTitle: "Video not Found" });
@@ -71,7 +70,9 @@ export const search = async (req, res) => {
   let videos = [];
   if (keyword) {
     videos = await Video.find({
-      title: keyword,
+      title: {
+        $regex: new RegExp(keyword, "i"),
+      },
     });
   }
   return res.render("search", { pageTitle: "Search", videos });
