@@ -137,7 +137,50 @@ export const logout = (req, res) => {
 export const getEdit = (req, res) => {
   return res.render("edit-profile", { pageTitle: "Edit Profile" });
 };
-export const postEdit = (req, res) => {
+export const postEdit = async (req, res) => {
+  // this is same with const id = req.seission.user.id
+  // Since I can mix other const codes , I can make it simple
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { name, email, username, location },
+  } = req;
+  /* this block same with above
+  req.session.user = {
+    ...req.session.user,
+    // rest of user session will same as before
+    name,
+    email,
+    username,
+    location,
+  }
+  */
+  const existingUsername = await User.findOne({ username });
+  console.log(existingUsername);
+  const existingEmail = await User.findOne({ email });
+  if (existingUsername || existingEmail)
+    if (existingUsername.id != _id) {
+      return res.render("edit-profile", {
+        errorMessage: `${username} already exists`,
+      });
+    }
+  if (existingEmail.email != email) {
+    return res.render("edit-profile", {
+      errorMessage: `${email} already exists`,
+    });
+  }
+  const updateduser = await User.findByIdAndUpdate(
+    _id,
+    {
+      name,
+      email,
+      username,
+      location,
+    },
+    { new: true }
+  );
+  req.session.user = updateduser;
   return res.render("edit-profile");
 };
 export const see = (req, res) => res.send("See User");
