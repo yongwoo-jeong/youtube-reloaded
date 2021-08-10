@@ -159,13 +159,12 @@ export const postEdit = async (req, res) => {
   const existingUsername = await User.findOne({ username });
   console.log(existingUsername);
   const existingEmail = await User.findOne({ email });
-  if (existingUsername || existingEmail)
-    if (existingUsername.id != _id) {
-      return res.render("edit-profile", {
-        errorMessage: `${username} already exists`,
-      });
-    }
-  if (existingEmail.email != email) {
+  if (existingUsername !== null && existingUsername.id != _id) {
+    return res.render("edit-profile", {
+      errorMessage: `${username} already exists`,
+    });
+  }
+  if (existingEmail !== null && existingEmail.id != _id) {
     return res.render("edit-profile", {
       errorMessage: `${email} already exists`,
     });
