@@ -142,9 +142,10 @@ export const postEdit = async (req, res) => {
   // Since I can mix other const codes , I can make it simple
   const {
     session: {
-      user: { _id },
+      user: { _id, avatarUrl },
     },
     body: { name, email, username, location },
+    file,
   } = req;
   /* this block same with above
   req.session.user = {
@@ -157,21 +158,23 @@ export const postEdit = async (req, res) => {
   }
   */
   const existingUsername = await User.findOne({ username });
-  console.log(existingUsername);
   const existingEmail = await User.findOne({ email });
   if (existingUsername !== null && existingUsername.id != _id) {
     return res.render("edit-profile", {
+      pageTitle: "Edit Profile",
       errorMessage: `${username} already exists`,
     });
   }
   if (existingEmail !== null && existingEmail.id != _id) {
     return res.render("edit-profile", {
+      pageTitle: "Edit Profile",
       errorMessage: `${email} already exists`,
     });
   }
   const updateduser = await User.findByIdAndUpdate(
     _id,
     {
+      avatarUrl: file ? file.path : avatarUrl,
       name,
       email,
       username,
@@ -180,7 +183,7 @@ export const postEdit = async (req, res) => {
     { new: true }
   );
   req.session.user = updateduser;
-  return res.render("edit-profile");
+  return res.render("edit-profile", { pageTitle: "Edit Profile" });
 };
 
 export const getChangePassword = (req, res) => {
