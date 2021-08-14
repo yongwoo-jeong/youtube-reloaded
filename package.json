@@ -7,8 +7,8 @@
     "url": "git+https://github.com/yongwoo-jeong/youtube-reloaded.git"
   },
   "scripts": {
-    "dev": "nodemon",
-    "assets": "webpack"
+    "dev:server": "nodemon",
+    "dev:assets": "webpack"
   },
   "author": "Yongwoo Jeong<jywoo9@gmail.com>",
   "license": "MIT",
