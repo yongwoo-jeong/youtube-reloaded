@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Video from "../models/Video";
 import fetch from "node-fetch";
 import bcrypt from "bcrypt";
 
@@ -172,6 +173,7 @@ export const postEdit = async (req, res) => {
       errorMessage: `${email} already exists`,
     });
   }
+
   const updateduser = await User.findByIdAndUpdate(
     _id,
     {
@@ -193,6 +195,7 @@ export const getChangePassword = (req, res) => {
   }
   return res.render("users/change-password", { pageTitle: "Change Password" });
 };
+
 export const postChangePassword = async (req, res) => {
   // Have to check whether working properly or not)
   const {
@@ -219,12 +222,14 @@ export const postChangePassword = async (req, res) => {
   await user.save();
   return res.redirect("/users/logout");
 };
+
 export const see = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id);
+  const user = await User.findById(id).populate("videos");
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User not Found." });
   }
   res.render("users/profile", { pageTitle: user.name, user });
 };
+
 export const remove = (req, res) => res.send("Edit User");
