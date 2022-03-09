@@ -1,5 +1,22 @@
 # Wetube Reladed
 
+Deep into nodeJS...
+Features:
+
+- User Authentication
+- Facebook Login
+- Github Login
+- User Profile
+- Log In
+- Log Out
+  Theory:
+  -MVC
+  -Routing
+  -Templates
+  -Models
+  -Relationships
+  express,
+
 / -> Home
 /join -> Join
 /login -> Login
