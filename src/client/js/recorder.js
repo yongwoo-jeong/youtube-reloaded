@@ -8,7 +8,7 @@ let videoFile;
 const handleDownload = () => {
   const a = document.createElement("a");
   a.href = videoFile;
-  a.download = "MyRecording.webm";
+  a.download = "MyRecording.webm"; // This means Download from link instead of move to.
   document.body.appendChild(a);
   a.click();
 };
@@ -16,21 +16,21 @@ const handleDownload = () => {
 const handleStop = () => {
   startBtn.innerText = "Download Recording";
   startBtn.removeEventListener("click", handleStop);
-  startBtn.addEventListener("click", handleStart);
+  startBtn.addEventListener("click", handleDownload);
   recorder.stop();
 };
 
 const handleStart = () => {
-  startBtn.innerText = "Stop Record";
+  startBtn.innerText = "Stop Recording";
   startBtn.removeEventListener("click", handleStart);
   startBtn.addEventListener("click", handleStop);
-  recorder = new MediaRecorder(stream);
-  recorder.ondataavailable = (e) => {
-    videoFile = URL.createObjectURL();
+  recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
+  recorder.ondataavailable = (event) => {
+    videoFile = URL.createObjectURL(event.data);
     video.srcObject = null;
     video.src = videoFile;
     video.loop = true;
-    video.play;
+    video.play();
   };
   recorder.start();
 };
