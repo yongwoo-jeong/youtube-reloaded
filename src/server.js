@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
@@ -9,7 +10,6 @@ import { localsMiddleware } from "./middlewares";
 import apiRouter from "./routers/apiRouter";
 
 const app = express();
-
 const logger = morgan("dev");
 
 app.set("view engine", "pug");
@@ -26,6 +26,7 @@ app.use(
   })
 );
 
+app.use(flash());
 app.use(localsMiddleware);
 app.use((req, res, next) => {
   res.header("Cross-Origin-Embedder-Policy", "require-corp");
