@@ -17,6 +17,7 @@
 @import "./screens/profile.scss";
 @import "./screens/edit-profile.scss";
 @import "./screens/upload.scss";
+@import "./screens/watch.scss";
 // Defaults
 a {
   color: inherit;
@@ -28,6 +29,7 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: $bg;
   color: white;
+  overflow: hidden;
 }
 
 main {
