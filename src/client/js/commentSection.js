@@ -1,5 +1,6 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
+const delBtn = document.getElementById("deleteBtn");
 
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
@@ -38,6 +39,12 @@ const handleSubmit = async (event) => {
   }
 };
 
+const handleDelBtn = async () => {
+  delBtn.parentNode.style.display = "none";
+};
+
 if (form) {
   form.addEventListener("submit", handleSubmit);
 }
+
+delBtn.addEventListener("click", handleDelBtn);

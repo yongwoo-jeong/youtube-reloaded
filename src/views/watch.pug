@@ -30,7 +30,7 @@ block content
     if loggedIn
         div.video__add-comments
             form.video__comment-form#commentForm
-                textarea(cols="30", rows="3", placeholder="Write a nice commment...")
+                textarea(cols="30", rows="2", placeholder="Write a nice commment...")
                 button Add Comment
     div.video__comments
         ul 
@@ -39,8 +39,10 @@ block content
                     div
                         i.fas.fa-comment 
                         span #{comment.text}
-                    div.delete
-                        button ❌
+                    if loggedInUser._id == comment.owner
+                        div.video__delete-comment#deleteBtn
+                            a ❌
+                            //- a(href=`${comment.id}/delete`) ❌
     
 
 block scripts
