@@ -19,6 +19,30 @@
   }
 }
 
+.video__add-comments {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+    background: ivory;
+  }
+  button {
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    width: 50%;
+    background-color: ivory;
+    color: rgba($color: $red, $alpha: 1) !important;
+  }
+}
+
 .video__comments {
   display: flex;
   flex-direction: column;
