@@ -32,5 +32,19 @@
     background-color: white;
     color: black;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      margin-left: 5px;
+      font-size: 14px;
+    }
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+    }
   }
 }

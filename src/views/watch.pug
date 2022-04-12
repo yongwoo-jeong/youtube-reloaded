@@ -35,9 +35,12 @@ block content
     div.video__comments
         ul 
             each comment in video.comments.reverse()
-                li.video__comment
-                    i.fas.fa-comment 
-                    span #{comment.text}
+                li.video__comment(data-id=comment.id)
+                    div
+                        i.fas.fa-comment 
+                        span #{comment.text}
+                    div.delete
+                        button ❌
     
 
 block scripts
