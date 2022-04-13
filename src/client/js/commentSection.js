@@ -25,6 +25,7 @@ const addComment = (text, id) => {
   newComment.appendChild(div2);
   div2.append(button);
   videoComments.prepend(newComment);
+  button.addEventListener("click", (e) => handleDelBtn(e));
 };
 
 const handleSubmit = async (event) => {
@@ -68,5 +69,3 @@ if (delBtns) {
     e.addEventListener("click", (e) => handleDelBtn(e));
   });
 }
-
-// 딜리트 여러번되도록 // 방금만들어진 코멘트 바로 삭제 되도록!
