@@ -3,6 +3,8 @@ const form = document.getElementById("commentForm");
 const delBtn = document.getElementById("deleteBtn");
 const delBtns = document.querySelectorAll("#deleteBtn");
 
+// 코멘트 input쓸때 스페이스바로 동영상 재생 막아야함.
+
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
   const newComment = document.createElement("li");
