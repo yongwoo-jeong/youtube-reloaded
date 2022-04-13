@@ -40,9 +40,8 @@ block content
                         i.fas.fa-comment 
                         span #{comment.text}
                     if loggedInUser._id == comment.owner
-                        div.video__delete-comment#deleteBtn
-                            a ❌
-                            //- a(href=`${comment.id}/delete`) ❌
+                        div.video__delete-comment#del
+                            button#deleteBtn ❌
     
 
 block scripts

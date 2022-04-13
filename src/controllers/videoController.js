@@ -1,7 +1,6 @@
 import Video from "../models/Video";
 import Comment from "../models/Comment";
 import User from "../models/User";
-import { async } from "regenerator-runtime";
 
 export const home = async (req, res) => {
   const videos = await Video.find({})
@@ -147,18 +146,20 @@ export const createComment = async (req, res) => {
   return res.status(201).json({ newCommentId: comment._id });
 };
 
-/* export const deleteComment = async (req, res) => {
+export const deleteComment = async (req, res) => {
   const { id } = req.params;
   const {
     user: { _id },
   } = req.session;
-  const video = await Video.findById(id);
-  if (!video) {
-    return res.status(404).render("404", { pageTitle: "Video not Found" });
+  const comment = await Comment.findById(id);
+  if (!comment) {
+    return res.sendStatus(404);
   }
-  if (String(video.owner) !== String(_id)) {
-    return res.status(403).redirect("/");
+  if (String(comment.owner) !== String(_id)) {
+    req.flash("error", "Not Authorized");
+    return res.sendStatus(403);
   }
-  await Video.findByIdAndDelete(id);
-  return res.redirect("/");
-}; */
+  await Comment.findByIdAndDelete(id);
+  req.flash("info", "Delete Succesful");
+  return res.sendStatus(204);
+};
