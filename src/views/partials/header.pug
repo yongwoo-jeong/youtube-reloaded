@@ -18,8 +18,8 @@ header
                         if !loggedInUser.avatarUrl
                             span 😀
                         else
-                            if loggedInUser.socialOnly 
-                                img.header_avatar(src=loggedInUser.avatarUrl,crossorigin)
+                            if loggedInUser.avatarUrl.includes("github")
+                                img.header_avatar(src=loggedInUser.avatarUrl)
                             else 
                                 img.header_avatar(src="/" + loggedInUser.avatarUrl,crossorigin)
             else 
